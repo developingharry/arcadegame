@@ -41,15 +41,32 @@ Hero.prototype.handleInput = function (direction) {
     // something in here
     switch (direction) {
       case 'left':
+        if (this.x == 0) {
+          break;
+        }
+
         this.x -= this.speed;
         break;
       case 'right':
+        if (this.x == 400) {
+          break;
+        }
+
         this.x += this.speed;
         break;
       case 'up':
+        if (this.y == 50) {
+          alert('winning');
+          break;
+        }
+
         this.y -= this.speed - 15;
         break;
       case 'down':
+        if (this.y == 390) {
+          break;
+        }
+
         this.y += this.speed - 15;
         break;
       case 'b':
