@@ -35,7 +35,7 @@ Enemy.prototype.update = function(dt) {
 
 ## Installation
 
-The game starts automatically.
+Open index.html to start the game.
 
 You're safe at the bottom, but watch out if you get close to those ladybirds!
 

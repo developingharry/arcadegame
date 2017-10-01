@@ -1,3 +1,4 @@
+'use strict';
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
     this.x = x;
@@ -5,9 +6,6 @@ var Enemy = function(x, y, speed) {
     this.speed = speed;
     this.sprite = 'images/enemy-bug.png';
 };
-// player co-ordinates for collision detection
-var playerX;
-var playerY;
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -17,18 +15,16 @@ Enemy.prototype.update = function(dt) {
     }
     this.x += this.speed * dt;
     //collision detection part 1 - bug and player occupying same row?
-    if (this.y == playerY) {
+    if (this.y == player.y) {
         // collision detection part 2 - close?
         // first we round up the bug's x-axis position...
-        var range = ((Math.round(this.x) - playerX));
+        var range = ((Math.round(this.x) - player.x));
         console.log(range);
         //...then see if it's within a reasonable range of the player.
         if (range > -75 && range < 80) {
             //if it is, we reset the player's position (and collision detection position)
             player.x = 200;
             player.y = 390;
-            playerX = null;
-            playerY = null;
             //...start a new wave
             newWave();
         }
@@ -64,8 +60,6 @@ Hero.prototype.handleInput = function(direction) {
                 break;
             }
             this.x -= this.speed;
-            playerX = this.x;
-            playerY = this.y;
             break;
         case 'right':
             // mind the right wall
@@ -73,8 +67,6 @@ Hero.prototype.handleInput = function(direction) {
                 break;
             }
             this.x += this.speed;
-            playerX = this.x;
-            playerY = this.y;
             break;
         case 'up':
             if (this.y == 50) {
@@ -86,16 +78,12 @@ Hero.prototype.handleInput = function(direction) {
             // speed up and down is reduced to keep the player nicely within
             // the cells of the "game board"
             this.y -= this.speed - 15;
-            playerX = this.x;
-            playerY = this.y;
             break;
         case 'down':
             if (this.y == 390) {
                 break;
             }
             this.y += this.speed - 15;
-            playerX = this.x;
-            playerY = this.y;
             break;
     }
 };
