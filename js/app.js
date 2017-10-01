@@ -9,11 +9,6 @@ var Enemy = function(x, y, speed) {
 var playerX;
 var playerY;
 
-// win and death counter to go on the scoreboard
-var wins = 0;
-var deaths = 0;
-
-
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
@@ -36,15 +31,6 @@ Enemy.prototype.update = function(dt) {
             playerY = null;
             //...start a new wave
             newWave();
-            //add one to the death counter
-            deaths++;
-            //rather than starting with an empty counter, which is poor form
-            //instantiate the counter as soon as it has a value.
-            if (deaths == 1) {
-                $('.scoreboard').append('Shameful Deaths:<div class = \'deathBox\'></div>');
-            }
-            //replace death counter value with updated figure.
-            $('.deathBox').text(deaths);
         }
     }
 };
@@ -92,19 +78,9 @@ Hero.prototype.handleInput = function(direction) {
             break;
         case 'up':
             if (this.y == 50) {
-                //gratify the winner if they make it to the water
-                alert('You made it!');
-                //add 1 to the win counter
-                wins++;
-                //again, only show the counter once it's needed.
-                if (wins == 1) {
-                    $('.scoreboard').prepend('Glorious Wins:<div class = \'winBox\'></div>');
-                }
-                $('.winBox').text(wins);
-                //reset the game as before.
                 this.x = 200;
                 this.y = 390;
-                newWave();
+                alert('You made it!');
                 break;
             }
             // speed up and down is reduced to keep the player nicely within

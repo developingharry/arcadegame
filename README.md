@@ -28,15 +28,6 @@ Enemy.prototype.update = function(dt) {
             playerY = null;
             //...start a new wave
             newWave();
-            //add one to the death counter
-            deaths++;
-            //rather than starting with an empty counter, which is poor form
-            //instantiate the counter as soon as it has a value.
-            if (deaths == 1) {
-                $('.scoreboard').append('Shameful Deaths:<div class = \'deathBox\'></div>');
-            }
-            //replace death counter value with updated figure.
-            $('.deathBox').text(deaths);
         }
     }
 };
@@ -55,8 +46,6 @@ The have antennaed children like you for breakfast!
 The aim of the game is to get to the water.
 
 Use the Arrow Keys to control your character.
-
-Compare your win:lose ratio with your friends!
 
 Post about it on FaceBook!
 
